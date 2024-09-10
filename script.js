@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             showLoadingSpinner(true);
-            const response = await axios.post('https://hr-interview-server-f3.onrender.com/generate_questions', formData, {
+            const response = await axios.post('https://hr-server-f3-v5.onrender.com/generate_questions', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     followUpQuestionIndex++;
                     await askNextQuestion();
                 } else {
-                    const response = await axios.post('https://hr-interview-server-f3.onrender.com/generate_follow_up', {
+                    const response = await axios.post('https://hr-server-f3-v5.onrender.com/generate_follow_up', {
                         question: currentQuestion,
                         response: finalTranscription,
                         resume_text: resumeText
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     concludeInterview.addEventListener('click', async () => {
         try {
             stopRecording();
-            const response = await axios.post('https://hr-interview-server-f3.onrender.com/generate_feedback', {
+            const response = await axios.post('https://hr-server-f3-v5.onrender.com/generate_feedback', {
                 interview_history: interviewHistory
             });
 
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function getTTSUrl(text) {
         try {
             const cleanedText = text.replace(/<\/s>/g, '');
-            const response = await axios.post('https://hr-interview-server-f3.onrender.com/tts', { text: cleanedText }, {
+            const response = await axios.post('https://hr-server-f3-v5.onrender.com/tts', { text: cleanedText }, {
                 responseType: 'blob'
             });
             return URL.createObjectURL(response.data);
